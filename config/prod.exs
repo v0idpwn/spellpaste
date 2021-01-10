@@ -12,6 +12,7 @@ use Mix.Config
 config :spellpaste, SpellpasteWeb.Endpoint,
   force_ssl: [rewrite_on: [:x_forwarded_proto], host: nil],
   url: [scheme: "https", host: "spellpaste.gigalixirapp.com", port: 443],
+  check_origin: false,
   cache_static_manifest: "priv/static/cache_manifest.json"
 
 # Do not print debug messages in production
