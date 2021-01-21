@@ -20,6 +20,12 @@ defmodule SpellpasteWeb.Router do
     live "/", PageLive, :index
   end
 
+  scope "/integrations", SpellpasteWeb do
+    pipe_through :api
+
+    post "/telegram", TelegramIntegrationController, :webhook
+  end
+
   # Other scopes may use custom stacks.
   # scope "/api", SpellpasteWeb do
   #   pipe_through :api
