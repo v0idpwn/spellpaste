@@ -4,13 +4,20 @@ defmodule Spellpaste.Events do
   events
   """
 
+  require Logger
+
   alias Phoenix.PubSub
 
   @events [
     Spellpaste.Events.TelegramMessage
   ]
 
+  @doc """
+  Publishes a message in the pubsub
+  """
   def publish!(event_module, input) when event_module in @events do
+    Logger.info("Publishing in #{inspect(event_module)}")
+
     PubSub.broadcast(
       pubsub_channel(),
       event_module.topic(),
