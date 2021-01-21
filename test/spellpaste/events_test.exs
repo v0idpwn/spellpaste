@@ -17,11 +17,7 @@ defmodule Spellpaste.EventsTest do
     end
 
     test "broadcasts if given proper input" do
-      start_supervised({Phoenix.PubSub, Application.get_env(:spellpaste, :pubsub_channel)})
-
-      Events.publish!(Events.TelegramMessage, %{text: "k"})
-    after
-      stop_supervised(Phoenix.PubSub)
+      :ok = Events.publish!(Events.TelegramMessage, %{text: "k", message_id: 1})
     end
   end
 end
