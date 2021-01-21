@@ -38,7 +38,7 @@ defmodule Spellpaste.Events.TelegramMessage do
     %__MODULE__{}
     |> Changeset.cast(params, [:text, :message_id])
     |> Changeset.validate_required([:text, :message_id])
-    |> Changeset.cast_embed(:from)
+    |> Changeset.cast_embed(:from, with: &from_changeset/2)
     |> Changeset.cast_embed(:reply_to_message, with: &reply_to_message_changeset/2)
     |> case do
       %{valid?: true} = changeset ->
@@ -55,4 +55,6 @@ defmodule Spellpaste.Events.TelegramMessage do
     |> Changeset.validate_required([:text, :message_id])
     |> Changeset.cast_embed(:from)
   end
+
+  defp from_changeset(schema, params), do: Changeset.cast(schema, params, [:username])
 end

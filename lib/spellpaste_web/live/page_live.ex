@@ -14,7 +14,7 @@ defmodule SpellpasteWeb.PageLive do
   end
 
   @impl true
-  def handle_info(%{topic: _topic, payload: message}, socket) do
-    {:ok, assign(socket, messages: [message | socket.assigns[:messages]])}
+  def handle_info(%TelegramMessage{} = message, socket) do
+    {:noreply, assign(socket, messages: [message | socket.assigns[:messages]])}
   end
 end
