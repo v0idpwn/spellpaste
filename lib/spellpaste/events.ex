@@ -9,6 +9,7 @@ defmodule Spellpaste.Events do
   alias Phoenix.PubSub
 
   @events [
+    Spellpaste.Events.BinCreated,
     Spellpaste.Events.TelegramMessage
   ]
 

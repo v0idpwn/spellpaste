@@ -4,7 +4,7 @@ defmodule Spellpaste.Events.TelegramMessage do
   """
 
   @behaviour Spellpaste.Events.Event
-  
+
   use Ecto.Schema
 
   alias Ecto.Changeset
