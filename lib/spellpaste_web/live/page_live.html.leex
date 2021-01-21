@@ -1,12 +1,13 @@
 <section>
   <h1><%= gettext "Welcome to %{name}!", name: "Spellpaste"%></h1>
-  <p>Foo bar baz</p>
+  <p>Last bins:</p>
 
   <%= for bin <- @bins do %>
     <div style="border-style: dotted;">
       <p>text: <%= bin.text %></p>
       <p>author: <%= bin.author %></p>
       <p>sender: <%= bin.sender %></p>
+      <p>identifier: <%= bin.identifier%></p>
     </div>
   <% end %>
 </section>

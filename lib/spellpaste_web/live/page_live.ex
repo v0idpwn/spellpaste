@@ -3,6 +3,7 @@ defmodule SpellpasteWeb.PageLive do
 
   alias Phoenix.PubSub
   alias Spellpaste.Events
+  alias Spellpaste.Pastes
   alias Spellpaste.Pastes.Bin
 
   defp pubsub_channel, do: Application.get_env(:spellpaste, :pubsub_channel)
@@ -11,7 +12,7 @@ defmodule SpellpasteWeb.PageLive do
   def mount(_params, _session, socket) do
     PubSub.subscribe(pubsub_channel(), Events.BinCreated.topic())
 
-    {:ok, assign(socket, bins: [])}
+    {:ok, assign(socket, bins: Pastes.last_bins(5))}
   end
 
   @impl true

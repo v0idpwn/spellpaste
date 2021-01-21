@@ -9,6 +9,12 @@ defmodule Spellpaste.Pastes do
 
   @retry_limit 10
 
+  @doc """
+  Creates a bin in the database
+
+  Generates a random identifier for it, this should be collision free and may 
+  require multiple attempts
+  """
   def create_bin(text, author \\ nil, sender \\ nil) do
     %{text: text, author: author, sender: sender}
     |> Bin.changeset()
@@ -39,4 +45,14 @@ defmodule Spellpaste.Pastes do
   end
 
   defp publish_bin_created_event(err), do: err
+
+  @doc """
+  Fetch the last created bins
+  """
+  def last_bins(limit) do
+    import Ecto.Query
+
+    from(b in Bin, limit: ^limit)
+    |> Repo.all()
+  end
 end
