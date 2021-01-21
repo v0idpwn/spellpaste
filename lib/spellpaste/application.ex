@@ -13,6 +13,8 @@ defmodule Spellpaste.Application do
       SpellpasteWeb.Telemetry,
       # Start the PubSub system
       {Phoenix.PubSub, name: Spellpaste.PubSub},
+      # Start the consumer for telegram messages
+      Spellpaste.TelegramMessageHandler,
       # Start the Endpoint (http/https)
       SpellpasteWeb.Endpoint
       # Start a worker by calling: Spellpaste.Worker.start_link(arg)
