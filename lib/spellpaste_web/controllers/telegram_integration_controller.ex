@@ -4,8 +4,8 @@ defmodule SpellpasteWeb.TelegramIntegrationController do
   require Logger
 
   def webhook(conn, %{"message" => message}) do
-    Logger.warn("Received #{inspect(message, limit: :infinity)}")
-    conn
-    |> put_status(200)
+    Events.publish!(Events.TelegramMessage, message)
+
+    send_resp(conn, 204, "")
   end
 end

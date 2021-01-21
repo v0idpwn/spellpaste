@@ -24,6 +24,7 @@ defmodule SpellpasteWeb do
       import Plug.Conn
       import SpellpasteWeb.Gettext
       alias SpellpasteWeb.Router.Helpers, as: Routes
+      alias Spellpaste.Events
     end
   end
 
