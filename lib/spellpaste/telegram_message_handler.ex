@@ -1,4 +1,4 @@
-defmodule Spellpaste.TelegramMessageHandler do
+defmodule SpellpasteIntegration.TelegramMessageHandler do
   @moduledoc """
   Stateless GenServer that subscribes to telegram messages and
   does something if they require an action
@@ -7,8 +7,9 @@ defmodule Spellpaste.TelegramMessageHandler do
 
   require Logger
 
-  alias Spellpaste.Events.TelegramMessage
+  alias Spellpaste.Events
   alias Spellpaste.Pastes
+  alias SpellpasteIntegration.Telegram.Message
 
   def start_link(_), do: GenServer.start_link(__MODULE__, nil)
 
@@ -18,7 +19,7 @@ defmodule Spellpaste.TelegramMessageHandler do
 
     Phoenix.PubSub.subscribe(
       Application.get_env(:spellpaste, :pubsub_channel),
-      TelegramMessage.topic()
+      Events.TelegramMessage.topic()
     )
 
     {:ok, nil}
@@ -26,7 +27,7 @@ defmodule Spellpaste.TelegramMessageHandler do
 
   @impl true
   def handle_info(
-        %TelegramMessage{text: "/spellpaste" <> _, reply_to_message: quoted} = message,
+        %Message{text: "/spellpaste" <> _, reply_to_message: quoted} = message,
         state
       )
       when not is_nil(quoted) do
