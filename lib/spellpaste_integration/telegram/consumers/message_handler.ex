@@ -32,7 +32,7 @@ defmodule SpellpasteIntegration.Telegram.Consumers.MessageHandler do
   ) do
     Logger.info("#{__MODULE__} handling message")
     # fire and forget, and don't make our genserver stuck
-    Task.async(fn -> Telegram.handle_message(message) end)
+    Task.async(fn -> Telegram.process_message(message) end)
 
     {:noreply, state}
   end

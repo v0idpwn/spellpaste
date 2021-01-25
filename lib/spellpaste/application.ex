@@ -14,7 +14,7 @@ defmodule Spellpaste.Application do
       # Start the PubSub system
       {Phoenix.PubSub, name: Spellpaste.PubSub},
       # Start the consumer for telegram messages
-      SpellpasteIntegration.TelegramMessageHandler,
+      SpellpasteIntegration.Telegram.Consumers.MessageHandler,
       # Start the Endpoint (http/https)
       SpellpasteWeb.Endpoint
       # Start a worker by calling: Spellpaste.Worker.start_link(arg)

@@ -9,7 +9,8 @@ defmodule SpellpasteWeb.TelegramIntegrationController do
   # power for messages that don't matter
   def webhook(conn, %{"message" => %{"text" => "/" <> _} = params}) do
     with {:ok, message} <- Telegram.build_message(params),
-         {:ok, _} <- Telegram.enqueue_processing(message) do
+         :ok <- Telegram.enqueue_processing!(message) do
+      Logger.info("Message enqueued for later processing")
       send_resp(conn, 204, "")
     end
   end

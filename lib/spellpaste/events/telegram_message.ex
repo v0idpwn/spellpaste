@@ -11,6 +11,8 @@ defmodule Spellpaste.Events.TelegramMessage do
   def topic, do: "spellpaste:integration:telegram_message"
 
   @impl true
+  def cast(%Message{} = message), do: {:ok, message}
+
   def cast(params) do
     params
     |> Message.cast()

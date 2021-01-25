@@ -57,4 +57,11 @@ defmodule SpellpasteIntegration.TelegramTest do
       assert {:ok, _} = Telegram.process_message(message)
     end
   end
+
+  describe "enqueue_processing!/1" do
+    test "publishes event" do
+      {:ok, message} = Telegram.build_message(%{chat_id: 1, message_id: 2, text: "bar"})
+      assert :ok = Telegram.enqueue_processing!(message)
+    end
+  end
 end
