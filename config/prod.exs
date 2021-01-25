@@ -15,6 +15,8 @@ config :spellpaste, SpellpasteWeb.Endpoint,
   check_origin: false,
   cache_static_manifest: "priv/static/cache_manifest.json"
 
+config :spellpaste, public_url: "https://spellpaste.v0idpwn.com"
+
 # Do not print debug messages in production
 config :logger, level: :info
 

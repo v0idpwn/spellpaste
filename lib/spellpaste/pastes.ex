@@ -50,9 +50,24 @@ defmodule Spellpaste.Pastes do
   Fetch the last created bins
   """
   def last_bins(limit) do
-    import Ecto.Query
-
-    from(b in Bin, limit: ^limit)
+    limit
+    |> Bin.last_few_query()
     |> Repo.all()
+  end
+
+  @doc """
+  Get a bin from identifier
+  """
+  def get_bin_from_identifier(identifier) do
+    identifier
+    |> Bin.from_identifier_query()
+    |> Repo.one()
+    |> case do
+      %Bin{} = bin ->
+        {:ok, bin}
+
+      nil ->
+        {:error, :not_found}
+    end
   end
 end

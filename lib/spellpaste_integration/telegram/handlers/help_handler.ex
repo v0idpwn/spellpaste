@@ -9,7 +9,7 @@ defmodule SpellpasteIntegration.Telegram.Handlers.HelpHandler do
   def handle(%Message{chat_id: c_id, message_id: m_id}) do
     %{
       chat_id: c_id,
-      message_id: m_id,
+      reply_to_message_id: m_id,
       text: "Send /spellpaste in reply to a message to send it to our spellpaste servers"
     }
   end

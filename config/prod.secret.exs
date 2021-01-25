@@ -31,8 +31,7 @@ config :spellpaste, SpellpasteWeb.Endpoint,
   secret_key_base: secret_key_base
 
 config :spellpaste, SpellpasteIntegration.Telegram.Client,
-  token: System.get_env("TELEGRAM_BOT_TOKEN") || raise "Missing telegram bot token"
-
+  token: System.get_env("TELEGRAM_BOT_TOKEN") || raise("Missing telegram bot token")
 
 # ## Using releases (Elixir v1.9+)
 #

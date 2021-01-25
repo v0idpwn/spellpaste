@@ -4,6 +4,9 @@ defmodule Spellpaste.Pastes.Bin do
   """
 
   use Ecto.Schema
+
+  import Ecto.Query
+
   alias Ecto.Changeset
 
   schema "bins" do
@@ -31,4 +34,11 @@ defmodule Spellpaste.Pastes.Bin do
 
   defp random_identifier(size \\ 8),
     do: size |> :crypto.strong_rand_bytes() |> Base.encode64(padding: false)
+
+  @doc "Query for fetching last bins"
+  def last_few_query(limit), do: from(b in __MODULE__, limit: ^limit)
+
+  @doc "Query for fetching a bin from identifier"
+  def from_identifier_query(identifier),
+    do: from(b in __MODULE__, where: b.identifier == ^identifier)
 end
