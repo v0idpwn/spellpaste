@@ -33,6 +33,7 @@ defmodule SpellpasteIntegration.Telegram.Message do
     %__MODULE__{}
     |> Changeset.cast(params, [:text, :message_id, :chat_id])
     |> Changeset.validate_required([:text, :message_id])
+    |> put_chat_id()
     |> Changeset.cast_embed(:from, with: &from_changeset/2)
     |> Changeset.cast_embed(:reply_to_message, with: &reply_to_message_changeset/2)
   end
@@ -41,8 +42,17 @@ defmodule SpellpasteIntegration.Telegram.Message do
     schema
     |> Changeset.cast(params, [:text, :message_id, :chat_id])
     |> Changeset.validate_required([:text, :message_id])
+    |> put_chat_id()
     |> Changeset.cast_embed(:from, with: &from_changeset/2)
   end
 
   defp from_changeset(schema, params), do: Changeset.cast(schema, params, [:username])
+
+  defp put_chat_id(%Ecto.Changeset{params: params} = changeset) do
+    Ecto.Changeset.put_change(
+      changeset,
+      :chat_id,
+      Changeset.get_change(changeset, :chat_id, params["chat"]["id"])
+    )
+  end
 end

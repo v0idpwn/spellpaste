@@ -3,6 +3,8 @@ defmodule SpellpasteIntegration.Telegram do
   Telegram message helpers
   """
 
+  require Logger
+
   alias Spellpaste.Events
   alias SpellpasteIntegration.Telegram.Message
 
@@ -26,6 +28,7 @@ defmodule SpellpasteIntegration.Telegram do
   """
   def process_message(%Message{} = m) do
     with {:ok, handler} <- SpellpasteIntegration.Telegram.Handlers.get_handler(m) do
+      Logger.info("Processing message #{inspect(m.message_id)} with handler #{inspect(handler)}")
       handler.handle(m)
     end
   end

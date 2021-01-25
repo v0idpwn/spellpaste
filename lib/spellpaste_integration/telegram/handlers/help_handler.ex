@@ -3,7 +3,7 @@ defmodule SpellpasteIntegration.Telegram.Handlers.HelpHandler do
   Sends a simple help message
   """
 
-  alias SpellpasteIntegration.Telegram.Message
+  alias SpellpasteIntegration.Telegram.{Client, Message}
   @behaviour SpellpasteIntegration.Telegram.Handlers
 
   def handle(%Message{chat_id: c_id, message_id: m_id}) do
@@ -12,5 +12,6 @@ defmodule SpellpasteIntegration.Telegram.Handlers.HelpHandler do
       reply_to_message_id: m_id,
       text: "Send /spellpaste in reply to a message to send it to our spellpaste servers"
     }
+    |> Client.send_message()
   end
 end
