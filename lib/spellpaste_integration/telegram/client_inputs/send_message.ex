@@ -2,7 +2,6 @@ defmodule SpellpasteIntegration.Telegram.ClientInputs.SendMessage do
   @moduledoc false
 
   use SpellpasteIntegration.Telegram.ClientInputs
-  use Ecto.Schema
 
   alias Ecto.Changeset
 
@@ -18,7 +17,7 @@ defmodule SpellpasteIntegration.Telegram.ClientInputs.SendMessage do
     field :reply_markup, :map
   end
 
-  #@impl true
+  @impl true
   def cast(params) do
     %__MODULE__{}
     |> Changeset.cast(params, __schema__(:fields))

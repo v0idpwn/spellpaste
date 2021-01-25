@@ -17,10 +17,12 @@ defmodule SpellpasteIntegration.Telegram.Message do
 
   embedded_schema do
     field :message_id, :integer
+    field :chat_id, :integer
     field :text, :string
     embeds_one :from, From
 
     embeds_one :reply_to_message, ReplyToMessage do
+      field :chat_id, :integer
       field :message_id, :integer
       field :text, :string
       embeds_one :from, From
@@ -29,7 +31,7 @@ defmodule SpellpasteIntegration.Telegram.Message do
 
   def cast(params) do
     %__MODULE__{}
-    |> Changeset.cast(params, [:text, :message_id])
+    |> Changeset.cast(params, [:text, :message_id, :chat_id])
     |> Changeset.validate_required([:text, :message_id])
     |> Changeset.cast_embed(:from, with: &from_changeset/2)
     |> Changeset.cast_embed(:reply_to_message, with: &reply_to_message_changeset/2)
@@ -37,7 +39,7 @@ defmodule SpellpasteIntegration.Telegram.Message do
 
   defp reply_to_message_changeset(schema, params) do
     schema
-    |> Changeset.cast(params, [:text, :message_id])
+    |> Changeset.cast(params, [:text, :message_id, :chat_id])
     |> Changeset.validate_required([:text, :message_id])
     |> Changeset.cast_embed(:from, with: &from_changeset/2)
   end

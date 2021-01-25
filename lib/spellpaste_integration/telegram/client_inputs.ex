@@ -12,7 +12,7 @@ defmodule SpellpasteIntegration.Telegram.ClientInputs do
     quote location: :keep do
       @behaviour SpellpasteIntegration.Telegram.ClientInputs
 
-      IO.inspect(__MODULE__)
+      use Ecto.Schema
 
       @impl true
       def build(attrs) do

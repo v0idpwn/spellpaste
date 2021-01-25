@@ -19,4 +19,13 @@ defmodule SpellpasteIntegration.Telegram do
         {:error, changeset}
     end
   end
+
+  @doc """
+  Processes a message with its handler
+  """
+  def process_message(%Message{} = m) do
+    with {:ok, handler} <- SpellpasteIntegration.Telegram.Handlers.get_handler(m) do
+      handler.handle(m)
+    end
+  end
 end
