@@ -3,6 +3,7 @@ defmodule SpellpasteIntegration.Telegram do
   Telegram message helpers
   """
 
+  alias Spellpaste.Events
   alias SpellpasteIntegration.Telegram.Message
 
   @doc """
@@ -27,5 +28,14 @@ defmodule SpellpasteIntegration.Telegram do
     with {:ok, handler} <- SpellpasteIntegration.Telegram.Handlers.get_handler(m) do
       handler.handle(m)
     end
+  end
+
+  @doc """
+  Enqueues processing for a message
+
+  Publishes it as an event in the pubsub
+  """
+  def enqueue_processing!(%Message{} = m) do
+    Events.publish!(Events.TelegramMessage, m)
   end
 end
