@@ -10,7 +10,8 @@ defmodule Spellpaste.Events do
 
   @events [
     Spellpaste.Events.BinCreated,
-    Spellpaste.Events.TelegramMessage
+    Spellpaste.Events.TelegramMessage,
+    Spellpaste.Events.StatsUpdated
   ]
 
   @doc """
