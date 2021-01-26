@@ -20,7 +20,8 @@ defmodule SpellpasteWeb.PageLive do
 
   @impl true
   def handle_info(%Bin{} = bin, socket) do
-    {:noreply, assign(socket, bins: [bin | Enum.take(socket.assigns[:bins], @limit - 1)])}
+    new_bins = [bin | Enum.take(socket.assigns[:bins], @limit - 1)]
+    {:noreply, assign(socket, bins: new_bins)}
   end
 
   @impl true
