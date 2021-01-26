@@ -28,12 +28,13 @@ defmodule Spellpaste.Pastes.Bin do
   @doc """
   Put a random identifier on a Bin changeset
   """
-  def put_identifier(changeset) do
-    Changeset.put_change(changeset, :identifier, random_identifier())
-  end
+  def put_identifier(changeset),
+    do: Changeset.put_change(changeset, :identifier, random_identifier())
 
   defp random_identifier(size \\ 8),
-    do: size |> :crypto.strong_rand_bytes() |> Base.encode64(padding: false)
+    do: size |> :crypto.strong_rand_bytes() |> Base.encode64(padding: false) |> url_safe()
+
+  defp url_safe(base64), do: base64 |> String.replace("+", "-") |> String.replace("/", "_")
 
   @doc "Query for fetching last bins"
   def last_few_query(limit), do: from(b in __MODULE__, limit: ^limit)
