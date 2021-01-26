@@ -12,6 +12,13 @@ defmodule SpellpasteWeb.TelegramIntegrationController do
          :ok <- Telegram.enqueue_processing!(message) do
       Logger.info("Message enqueued for later processing")
       send_resp(conn, 204, "")
+    else
+      err ->
+        Logger.error(
+          "Failed handling telegram webhook with #{inspect(err)}, answering 204"
+        )
+
+        send_resp(conn, 204, "")
     end
   end
 
