@@ -18,6 +18,7 @@ defmodule SpellpasteWeb.Router do
     pipe_through :browser
 
     live "/", PageLive, :index
+    live "/b/:identifier", BinLive, :index
   end
 
   scope "/integrations", SpellpasteWeb do

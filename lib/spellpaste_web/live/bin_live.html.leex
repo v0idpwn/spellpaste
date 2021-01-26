@@ -1,0 +1,9 @@
+<section>
+  <%= if @not_found do %>
+    Not found
+  <% else %>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <p>Authored by <%= @bin.author %>, sent by <%= @bin.sender %>.
+    <pre><code><%= @bin.text %></code></pre>
+  <% end %>
+</section>
