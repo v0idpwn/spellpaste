@@ -37,7 +37,8 @@ defmodule Spellpaste.Pastes.Bin do
   defp url_safe(base64), do: base64 |> String.replace("+", "-") |> String.replace("/", "_")
 
   @doc "Query for fetching last bins"
-  def last_few_query(limit), do: from(b in __MODULE__, limit: ^limit)
+  def last_few_query(limit),
+    do: from(b in __MODULE__, limit: ^limit, order_by: {:desc, b.inserted_at})
 
   @doc "Query for fetching a bin from identifier"
   def from_identifier_query(identifier),
