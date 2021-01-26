@@ -1,5 +1,11 @@
 <section>
   <h1><%= gettext "Welcome to %{name}!", name: "Spellpaste"%></h1>
+  <%= if @stats do %>
+    <p>Paste count: <%= @stats.pastes_count %>, Last month: <%= @stats.pastes_in_this_month%>, Authors: <%= @stats.authors_count %>, Senders:  <%= @stats.senders_count %></p>
+  <% else %>
+    <p>Waiting for status...</p>
+  <% end %>
+
   <p>Last bins:</p>
 
   <%= for bin <- @bins do %>
