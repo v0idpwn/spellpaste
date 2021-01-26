@@ -14,4 +14,16 @@ defmodule Spellpaste.PastesTest do
       assert {:ok, _bin} = Pastes.create_bin("hello", "jonas", "jose")
     end
   end
+
+  describe "last_bins" do
+    test "Returns last few bins" do
+      created =
+        1..10
+        |> Enum.map(&inspect/1)
+        |> Enum.map(&Pastes.create_bin/1)
+        |> Enum.map(fn {:ok, x} -> x end)
+
+      assert Enum.take(Enum.reverse(created), 5) == Pastes.last_bins(5)
+    end
+  end
 end
