@@ -70,4 +70,17 @@ defmodule Spellpaste.Pastes do
         {:error, :not_found}
     end
   end
+
+  @doc """
+  Increase bin view count
+  """
+  def increase_bin_view_count(%Bin{} = bin) do
+    bin
+    |> Bin.inc_view_count_query()
+    |> Repo.update_all([])
+    |> case do
+      {1, _} -> {:ok, Repo.reload(bin)}
+      _err -> :error
+    end
+  end
 end

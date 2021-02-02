@@ -37,4 +37,15 @@ defmodule Spellpaste.PastesTest do
       assert {:error, :not_found} = Pastes.get_bin_from_identifier("foo")
     end
   end
+
+  describe "increase_bin_view_count/1" do
+    test "returns updated bin when successful" do
+      {:ok, %{view_count: c1} = bin} = Pastes.create_bin("foo")
+      assert {:ok, %{view_count: c2}} = Pastes.increase_bin_view_count(bin)
+      assert {:ok, %{view_count: c3}} = Pastes.increase_bin_view_count(bin)
+
+      assert c2 == c1 + 1;
+      assert c3 == c2 + 1;
+    end
+  end
 end

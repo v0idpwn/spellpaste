@@ -5,7 +5,7 @@ defmodule SpellpasteWeb.PageLiveTest do
 
   test "disconnected and connected render", %{conn: conn} do
     {:ok, page_live, disconnected_html} = live(conn, "/")
-    assert disconnected_html =~ "Spellpaste"
-    assert render(page_live) =~ "Spellpaste"
+    assert disconnected_html =~ "Last"
+    assert render(page_live) =~ "Last"
   end
 end

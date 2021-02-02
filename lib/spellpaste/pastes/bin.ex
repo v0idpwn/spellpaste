@@ -15,6 +15,7 @@ defmodule Spellpaste.Pastes.Bin do
     field :sender, :string
     field :programming_language, :string
     field :identifier, :string
+    field :view_count, :integer, default: 0
 
     timestamps()
   end
@@ -43,4 +44,9 @@ defmodule Spellpaste.Pastes.Bin do
   @doc "Query for fetching a bin from identifier"
   def from_identifier_query(identifier),
     do: from(b in __MODULE__, where: b.identifier == ^identifier)
+
+  @doc "Query for increasing a bin views by one"
+  def inc_view_count_query(%__MODULE__{id: id}) do
+    from(b in __MODULE__, where: b.id == ^id, update: [inc: [view_count: 1]])
+  end
 end
