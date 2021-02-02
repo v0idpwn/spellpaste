@@ -58,12 +58,15 @@ header section {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  color: #eeeeee;
 }
 
 .title {
   margin-top: auto;
   margin-bottom: auto;
+}
+
+.title a {
+  color: #eeeeee;
 }
 
 /* main page */
