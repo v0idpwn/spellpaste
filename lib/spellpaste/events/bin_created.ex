@@ -8,7 +8,7 @@ defmodule Spellpaste.Events.BinCreated do
   @behaviour Spellpaste.Events.Event
 
   @impl true
-  def topic, do: "spellpaste:pastes:bin_created"
+  def topic(_ \\ nil), do: "spellpaste:pastes:bin_created"
 
   @impl true
   def cast(%Bin{} = bin), do: {:ok, bin}

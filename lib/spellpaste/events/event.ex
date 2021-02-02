@@ -7,9 +7,13 @@ defmodule Spellpaste.Events.Event do
   cast through
   """
 
+  @optional_callbacks topic: 0
+
   @doc """
   Topic for this event, will be matched against incoming publishing attempts
   """
+  @callback topic(term) :: String.t()
+
   @callback topic() :: String.t()
 
   @doc """

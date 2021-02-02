@@ -22,7 +22,7 @@ defmodule Spellpaste.Events do
 
     PubSub.broadcast(
       pubsub_channel(),
-      event_module.topic(),
+      event_module.topic(input),
       coerce!(event_module, input)
     )
   end

@@ -8,7 +8,7 @@ defmodule Spellpaste.Events.TelegramMessage do
   @behaviour Spellpaste.Events.Event
 
   @impl true
-  def topic, do: "spellpaste:integration:telegram_message"
+  def topic(_ \\ nil), do: "spellpaste:integration:telegram_message"
 
   @impl true
   def cast(%Message{} = message), do: {:ok, message}

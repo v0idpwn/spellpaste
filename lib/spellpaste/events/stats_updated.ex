@@ -18,7 +18,7 @@ defmodule Spellpaste.Events.StatsUpdated do
   end
 
   @impl true
-  def topic, do: "spellpaste:stats_updated"
+  def topic(_ \\ nil), do: "spellpaste:stats_updated"
 
   @impl true
   def cast(params) do
