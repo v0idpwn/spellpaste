@@ -79,7 +79,10 @@ defmodule Spellpaste.Pastes do
     |> Bin.inc_view_count_query()
     |> Repo.update_all([])
     |> case do
-      {1, _} -> {:ok, Repo.reload(bin)}
+      {1, _} -> 
+        reloaded = Repo.reload(bin)
+        Events.publish!(Events.BinViewCountIncreased, reloaded)
+        {:ok, reloaded}
       _err -> :error
     end
   end

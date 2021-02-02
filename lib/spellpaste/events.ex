@@ -10,6 +10,7 @@ defmodule Spellpaste.Events do
 
   @events [
     Spellpaste.Events.BinCreated,
+    Spellpaste.Events.BinViewCountIncreased,
     Spellpaste.Events.TelegramMessage,
     Spellpaste.Events.StatsUpdated
   ]
