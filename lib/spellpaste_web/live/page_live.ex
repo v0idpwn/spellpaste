@@ -5,6 +5,7 @@ defmodule SpellpasteWeb.PageLive do
   alias Spellpaste.Events
   alias Spellpaste.Pastes
   alias Spellpaste.Pastes.Bin
+  alias SpellpasteWeb.BinLive
 
   @limit 5
 
@@ -27,5 +28,10 @@ defmodule SpellpasteWeb.PageLive do
   @impl true
   def handle_info(%Events.StatsUpdated{} = new_stats, socket) do
     {:noreply, assign(socket, stats: new_stats, stats_last_updated: NaiveDateTime.utc_now())}
+  end
+
+  @impl true
+  def handle_event("view", %{"id" => id}, socket) do
+    {:noreply, push_redirect(socket, to: Routes.bin_path(socket, :index, id))}
   end
 end
