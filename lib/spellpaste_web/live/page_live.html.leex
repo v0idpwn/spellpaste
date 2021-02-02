@@ -1,14 +1,15 @@
 <div class="stats">
   <div class="container">
     <%= if @stats do %>
-      <p>Paste count: <%= @stats.pastes_count %>, Last month: <%= @stats.pastes_in_this_month%>, Authors: <%= @stats.authors_count %>, Senders:  <%= @stats.senders_count %></p>
+      Paste count: <%= @stats.pastes_count %>, Last month: <%= @stats.pastes_in_this_month%>, Authors: <%= @stats.authors_count %>, Senders:  <%= @stats.senders_count %>
     <% else %>
-      <p>Waiting for status...</p>
+      Waiting for stats...
     <% end %>
   </div>
 </div>
-<section class="container">
-  <p>Last bins:</p>
+<section class="container" id="index">
+
+  <h3 class="h3">Last bins:</h3>
 
   <%= for bin <- @bins do %>
     <div class="bin">

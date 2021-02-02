@@ -23,16 +23,25 @@ body {
 }
 
 main section {
+  margin-top: 10rem;
   background: #eeeeee;
+  height: 100%;
 }
 
 .container{
   margin: 0 auto;
-  max-width: 80.0rem;
+  max-width: 120.0rem;
   padding: 0 2.0rem;
   position: relative;
   width: 100%
 }
+
+#index {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  padding-bottom: 2rem;
+}
+
 select {
   width: auto;
 }
@@ -64,6 +73,7 @@ header section {
 }
 
 .bin {
+  border-radius: 5px;
   background: #ffffff;
   font-size: 1rem;
   border-color: #aaaaaa;
