@@ -1,19 +1,34 @@
-<section>
-  <h1><%= gettext "Welcome to %{name}!", name: "Spellpaste"%></h1>
-  <%= if @stats do %>
-    <p>Paste count: <%= @stats.pastes_count %>, Last month: <%= @stats.pastes_in_this_month%>, Authors: <%= @stats.authors_count %>, Senders:  <%= @stats.senders_count %></p>
-  <% else %>
-    <p>Waiting for status...</p>
-  <% end %>
-
+<div class="stats">
+  <div class="container">
+    <%= if @stats do %>
+      <p>Paste count: <%= @stats.pastes_count %>, Last month: <%= @stats.pastes_in_this_month%>, Authors: <%= @stats.authors_count %>, Senders:  <%= @stats.senders_count %></p>
+    <% else %>
+      <p>Waiting for status...</p>
+    <% end %>
+  </div>
+</div>
+<section class="container">
   <p>Last bins:</p>
 
   <%= for bin <- @bins do %>
-    <div style="border-style: dotted;">
-      <p>text: <%= bin.text %></p>
-      <p>author: <%= bin.author %></p>
-      <p>sender: <%= bin.sender %></p>
-      <p>identifier: <%= bin.identifier%></p>
+    <div class="bin">
+      <div class="container">
+        <div class="row">
+          <div class="column">
+            <div class="container">
+              <div class="row">
+                <h3 class="h3"><%= bin.identifier%></h3>
+              </div>
+              <div class="row">
+                <div class="subtitle">Autored by <%= bin.author %>, sent by <%= bin.sender %></div>
+              </div>
+            </div>
+          </div>
+          <div class="column-offset-50">
+            <button>View</button>
+          </div>
+        </div>
+      </div>
     </div>
   <% end %>
 </section>

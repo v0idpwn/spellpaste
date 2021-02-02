@@ -17,6 +17,15 @@ h5{font-size: 1.6rem; letter-spacing: 0; line-height: 1.4}
 h6{font-size: 1.4rem; letter-spacing: 0; line-height: 1.2}
 pre{padding: 1em;}
 
+body {
+  margin: 0;
+  background: #aaaaaa;
+}
+
+main section {
+  background: #eeeeee;
+}
+
 .container{
   margin: 0 auto;
   max-width: 80.0rem;
@@ -28,63 +37,51 @@ select {
   width: auto;
 }
 
-/* Phoenix promo and logo */
-.phx-hero {
-  text-align: center;
-  border-bottom: 1px solid #e3e3e3;
-  background: #eee;
-  border-radius: 6px;
-  padding: 3em 3em 1em;
-  margin-bottom: 3rem;
-  font-weight: 200;
-  font-size: 120%;
-}
-.phx-hero input {
-  background: #ffffff;
-}
-.phx-logo {
-  min-width: 300px;
-  margin: 1rem;
-  display: block;
-}
-.phx-logo img {
-  width: auto;
-  display: block;
-}
-
 /* Headers */
 header {
   width: 100%;
-  background: #fdfdfd;
+  background: #8278c4;
   border-bottom: 1px solid #eaeaea;
-  margin-bottom: 2rem;
+  /*margin-bottom: 2rem;*/
 }
 header section {
   align-items: center;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  color: #eeeeee;
 }
-header section :first-child {
-  order: 2;
+
+.title {
+  margin-top: auto;
+  margin-bottom: auto;
 }
-header section :last-child {
-  order: 1;
+
+/* main page */
+.stats {
+  background: #fcba03;
+  font-size: 1rem;
 }
-header nav ul,
-header nav li {
-  margin: 0;
-  padding: 0;
-  display: block;
-  text-align: right;
-  white-space: nowrap;
-}
-header nav ul {
+
+.bin {
+  background: #ffffff;
+  font-size: 1rem;
+  border-color: #aaaaaa;
   margin: 1rem;
-  margin-top: 0;
 }
-header nav a {
-  display: block;
+
+.bin h3 {
+  margin-bottom: 0.1rem;
+}
+
+.bin .subtitle {
+  color: #555555;
+}
+
+.bin button {
+  margin-top: 1rem;
+  background: #fcba03;
+  border-color: #000000;
 }
 
 @media (min-width: 40.0rem) { /* Small devices (landscape phones, 576px and up) */
@@ -93,9 +90,5 @@ header nav a {
   }
   header nav ul {
     margin: 1rem;
-  }
-  .phx-logo {
-    flex-basis: 527px;
-    margin: 2rem 1rem;
   }
 }
