@@ -11,11 +11,20 @@ defmodule SpellpasteWeb.BinLive do
     case Pastes.get_bin_from_identifier(identifier) do
       {:ok, bin} ->
         PubSub.subscribe(pubsub_channel(), Events.BinViewCountIncreased.topic(bin))
-        
+        {:ok, bin} = maybe_increase_view_count(bin, socket)
+
         {:ok, assign(socket, bin: bin, not_found: false)}
 
       {:error, :not_found} ->
         {:ok, assign(socket, not_found: true)}
+    end
+  end
+
+  defp maybe_increase_view_count(bin, socket) do
+    if connected?(socket) do
+      {:ok, bin}
+    else
+      Pastes.increase_bin_view_count(bin)
     end
   end
 
