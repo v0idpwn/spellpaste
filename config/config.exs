@@ -19,6 +19,7 @@ config :spellpaste, SpellpasteWeb.Endpoint,
   live_view: [signing_salt: "UV1zwHGC"]
 
 config :spellpaste, public_url: "http://localhost:4000"
+config :spellpaste, Spellpaste.StatsPoller, interval: 20000
 
 # Configures Elixir's Logger
 config :logger, :console,

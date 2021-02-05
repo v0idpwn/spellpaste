@@ -13,7 +13,7 @@ defmodule Spellpaste.StatsPoller do
   alias Spellpaste.Events
   alias Spellpaste.Repo
 
-  @interval 15000
+  defp interval, do: Application.get_env(:spellpaste, __MODULE__)[:interval]
 
   def start_link(_), do: GenServer.start_link(__MODULE__, nil)
 
@@ -26,7 +26,7 @@ defmodule Spellpaste.StatsPoller do
 
   @impl true
   def handle_continue(:schedule_poll, state) do
-    Process.send_after(self(), :poll, @interval)
+    Process.send_after(self(), :poll, interval())
     {:noreply, state}
   end
 
