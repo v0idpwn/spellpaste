@@ -13,7 +13,7 @@ defmodule Spellpaste.StatsPoller do
   alias Spellpaste.Events
   alias Spellpaste.Repo
 
-  @interval 2000
+  @interval 15000
 
   def start_link(_), do: GenServer.start_link(__MODULE__, nil)
 
