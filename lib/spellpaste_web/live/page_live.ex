@@ -12,12 +12,25 @@ defmodule SpellpasteWeb.PageLive do
   defp pubsub_channel, do: Application.get_env(:spellpaste, :pubsub_channel)
 
   @impl true
-  def mount(_params, _session, socket) do
+  def mount(params, session, socket) do
+    if(connected?(socket)) do
+      mount_connected(params, session, socket)
+    else
+      mount_disconnected(params, session, socket)
+    end
+  end
+
+  def mount_disconnected(_params, _session, socket) do
+    {:ok, assign(socket, loading: true, stats: nil)}
+  end
+
+  def mount_connected(_params, _session, socket) do
     PubSub.subscribe(pubsub_channel(), Events.BinCreated.topic())
     PubSub.subscribe(pubsub_channel(), Events.StatsUpdated.topic())
 
-    {:ok, assign(socket, bins: Pastes.last_bins(@limit), stats: nil)}
+    {:ok, assign(socket, loading: false, stats: nil, bins: Pastes.last_bins(@limit))}
   end
+
 
   @impl true
   def handle_info(%Bin{} = bin, socket) do

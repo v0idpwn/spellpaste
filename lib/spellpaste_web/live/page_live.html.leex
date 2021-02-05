@@ -11,25 +11,29 @@
 <section class="container" id="index">
   <h3 class="h3">Last bins:</h3>
 
-  <%= for bin <- @bins do %>
-    <div class="bin">
-      <div class="container">
-        <div class="row">
-          <div class="column">
-            <div class="container">
-              <div class="row">
-                <h3 class="h3"><%= bin.identifier%></h3>
-              </div>
-              <div class="row">
-                <div class="subtitle">Autored by <%= bin.author %>, sent by <%= bin.sender %></div>
+  <%= if @loading do %>
+    <div class="loader">Loading...</div>
+  <% else %>
+    <%= for bin <- @bins do %>
+      <div class="bin">
+        <div class="container">
+          <div class="row">
+            <div class="column">
+              <div class="container">
+                <div class="row">
+                  <h3 class="h3"><%= bin.identifier%></h3>
+                </div>
+                <div class="row">
+                  <div class="subtitle">Autored by <%= bin.author %>, sent by <%= bin.sender %></div>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="column-offset-50">
-            <button phx-click="view" phx-value-id=<%= bin.identifier %>>View</button>
+            <div class="column-offset-50">
+              <button phx-click="view" phx-value-id=<%= bin.identifier %>>View</button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    <% end %>
   <% end %>
 </section>
